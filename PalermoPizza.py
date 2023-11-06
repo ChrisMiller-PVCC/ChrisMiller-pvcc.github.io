@@ -21,6 +21,8 @@ PR_XLARGE = 21.99
 num_pizza = 0
 num_breadsticks = 0
 num_drinks = 0
+pizza_price = 0
+pizza_cost = 0
 subtotal = 0
 sales_tax = 0
 total = 0
@@ -45,21 +47,23 @@ def get_user_data():
     num_drinks = int(input("How many drinks would you like? "))
 
 def perform_calculations():
-    global subtotal, sales_tax, total
+    global subtotal, sales_tax, total, pizza_price, pizza_cost
+
     pizza_size = input("Enter the size of the pizza (S, M, L, or XL): ")
     
     if pizza_size == "S":
-        pizza_cost = num_pizza * PR_SMALL
+        pizza_price = PR_SMALL
     elif pizza_size == "M":
-        pizza_cost = num_pizza * PR_MEDIUM
+        pizza_price = PR_MEDIUM
     elif pizza_size == "L":
-        pizza_cost = num_pizza * PR_LARGE
+        pizza_price = PR_LARGE
     elif pizza_size == "XL":
-        pizza_cost = num_pizza * PR_XLARGE
+        pizza_price = PR_XLARGE
     else:
         print("Invalid pizza size entered. Using the default small pizza size.")
-        pizza_cost = num_pizza * PR_SMALL
+        pizza_price = PR_SMALL
 
+    pizza_cost = num_pizza * pizza_price
     breadsticks_cost = num_breadsticks * PR_BREADSTICKS
     drinks_cost = num_drinks * PR_DRINK
 
@@ -73,6 +77,17 @@ def display_results():
     print('**** Palermos Pizza ****')
     print('The Best Pizza Parlor In The West')
     print('------------------------------')
+    print('Pizza Cost:                                   $  ' + money_format.format(pizza_cost))
+    print('Beverage cost:                                $  ' + money_format.format(num_drinks * PR_DRINK))
+    print('Breadsticks Cost:                             $  ' + money_format.format(num_breadsticks * PR_BREADSTICKS))
+    print('Subtotal:                                     $  ' + money_format.format(subtotal))
+    print('Sales Tax:                                    $  ' + money_format.format(sales_tax))
+    print('Total:                                        $  ' + money_format.format(total))
+    print('------------------------------')
+    print(datetime.datetime.now())
+
+if __name__ == "__main__":
+    main()--')
     print('Pizzas Ordered:                                 ' + money_format.format(num_pizza))
     print('Drinks Ordered:                                 ' + money_format.format(num_drinks))
     print('Breadsticks Ordered:                            ' + money_format.format(num_breadsticks))
@@ -82,6 +97,6 @@ def display_results():
     print('------------------------------')
     print(datetime.datetime.now())
 
-# Call the main program to execute
+
 if __name__ == "__main__":
     main()
