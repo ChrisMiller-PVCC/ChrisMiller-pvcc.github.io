@@ -1,4 +1,4 @@
-# Name: Joshua Vernon
+# Name: Christopher Miller
 # Prog Purpose: This program creates a payroll report
 
 import datetime
